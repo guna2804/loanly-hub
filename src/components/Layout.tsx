@@ -1,18 +1,24 @@
+// src/components/Layout.tsx
+
 import { useState } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import { DollarSign, Menu, X, Bell, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, DollarSign, Settings, HelpCircle, Bell } from "lucide-react";
+import { navItems } from "@/lib/nav-config";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-background-alt">
       {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-50 backdrop-blur-md bg-card-glass">
+      <header className="border-b border-border sticky top-0 z-50 backdrop-blur-md bg-card-glass">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -24,31 +30,38 @@ export const Layout = ({ children }: LayoutProps) => {
                 <h1 className="text-xl font-bold bg-gradient-financial bg-clip-text text-transparent">
                   MoneyBoard
                 </h1>
-                <p className="text-xs text-muted-foreground">Smart Lending Tracker</p>
+                <p className="text-xs text-muted-foreground">
+                  Smart Lending Tracker
+                </p>
               </div>
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" size="sm">Dashboard</Button>
-              <Button variant="ghost" size="sm">Loans</Button>
-              <Button variant="ghost" size="sm">Analytics</Button>
+              {navItems.map((item) => (
+                <Button
+                  key={item.path}
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleNavigation(item.path)}
+                >
+                  {item.label}
+                </Button>
+              ))}
             </nav>
 
             {/* Actions */}
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="icon" className="relative">
                 <Bell className="w-4 h-4" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-destructive rounded-full"></span>
+                <span className="absolute -top-1 -right-1 w-2 h-2 bg-destructive rounded-full" />
               </Button>
               <Button variant="ghost" size="icon">
                 <Settings className="w-4 h-4" />
               </Button>
-              
-              {/* Mobile Menu Toggle */}
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="md:hidden"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
@@ -57,13 +70,20 @@ export const Layout = ({ children }: LayoutProps) => {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Nav */}
           {mobileMenuOpen && (
             <nav className="md:hidden mt-4 pb-4 border-t border-border pt-4">
               <div className="flex flex-col gap-2">
-                <Button variant="ghost" className="justify-start">Dashboard</Button>
-                <Button variant="ghost" className="justify-start">Loans</Button>
-                <Button variant="ghost" className="justify-start">Analytics</Button>
+                {navItems.map((item) => (
+                  <Button
+                    key={item.path}
+                    variant="ghost"
+                    className="justify-start"
+                    onClick={() => handleNavigation(item.path)}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
               </div>
             </nav>
           )}
@@ -72,7 +92,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6">
-        {children}
+        <Outlet />
       </main>
     </div>
   );
