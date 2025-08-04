@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MoneyBoard Design System - Financial Theme with Blues & Greens
+All colors MUST be HSL for proper theming.
+*/
+
+@layer base {
+  :root {
+    /* Financial Background System */
+    --background: 240 10% 98%;
+    --background-alt: 220 15% 96%;
+    --foreground: 220 84% 8%;
+
+    /* Card System with Glass Effects */
+    --card: 220 20% 100%;
+    --card-foreground: 220 84% 8%;
+    --card-glass: 220 20% 100% / 0.8;
+
+    /* Popover System */
+    --popover: 220 20% 100%;
+    --popover-foreground: 220 84% 8%;
+
+    /* Financial Primary - Deep Blue */
+    --primary: 220 84% 35%;
+    --primary-glow: 220 84% 45%;
+    --primary-foreground: 220 20% 98%;
+
+    /* Financial Success - Emerald Green */
+    --secondary: 158 64% 52%;
+    --secondary-glow: 158 64% 62%;
+    --secondary-foreground: 220 20% 98%;
+
+    /* Muted Financial Tones */
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 16% 46%;
+
+    /* Accent - Teal Financial */
+    --accent: 175 70% 45%;
+    --accent-glow: 175 70% 55%;
+    --accent-foreground: 220 20% 98%;
+
+    /* Warning & Destructive */
+    --warning: 38 92% 55%;
+    --warning-foreground: 220 20% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 20% 98%;
+
+    /* Borders & Inputs */
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 220 84% 35%;
+
+    /* Design System Enhancements */
+    --radius: 0.75rem;
+    
+    /* Financial Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-financial: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    
+    /* Glass Effects */
+    --glass-bg: hsl(var(--card-glass));
+    --glass-border: hsl(var(--border) / 0.2);
+    
+    /* Shadows */
+    --shadow-financial: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    --shadow-success: 0 10px 30px -10px hsl(var(--secondary) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    /* Dark Mode Financial Theme */
+    --background: 220 84% 6%;
+    --background-alt: 220 70% 8%;
+    --foreground: 220 20% 96%;
+
+    --card: 220 70% 8%;
+    --card-foreground: 220 20% 96%;
+    --card-glass: 220 70% 8% / 0.8;
+
+    --popover: 220 70% 8%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 220 84% 55%;
+    --primary-glow: 220 84% 65%;
+    --primary-foreground: 220 84% 6%;
+
+    --secondary: 158 64% 55%;
+    --secondary-glow: 158 64% 65%;
+    --secondary-foreground: 220 84% 6%;
+
+    --muted: 220 50% 12%;
+    --muted-foreground: 220 20% 65%;
+
+    --accent: 175 70% 50%;
+    --accent-glow: 175 70% 60%;
+    --accent-foreground: 220 84% 6%;
+
+    --warning: 38 92% 60%;
+    --warning-foreground: 220 84% 6%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 220 20% 96%;
+
+    --border: 220 50% 15%;
+    --input: 220 50% 15%;
+    --ring: 220 84% 55%;
+    
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-financial: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
